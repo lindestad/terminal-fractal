@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 num-complex = "0.4.6"
+ctrlc = "3"
+crossterm = "0.29.0"
