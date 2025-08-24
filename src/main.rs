@@ -83,18 +83,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
         // Input (only quit)
         while event::poll(Duration::from_millis(0))? {
-            match event::read()? {
-                Event::Key(KeyEvent {
-                    code, modifiers, ..
-                }) => {
-                    if (modifiers.contains(KeyModifiers::CONTROL) && code == KeyCode::Char('c'))
-                        || code == KeyCode::Char('q')
-                    {
-                        running.store(false, Ordering::SeqCst);
-                        break;
-                    }
+            if let Event::Key(KeyEvent {
+                code, modifiers, ..
+            }) = event::read()?
+            {
+                if (modifiers.contains(KeyModifiers::CONTROL) && code == KeyCode::Char('c'))
+                    || code == KeyCode::Char('q')
+                {
+                    running.store(false, Ordering::SeqCst);
+                    break;
                 }
-                _ => {}
             }
         }
 
@@ -148,7 +146,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     let norm = iters as f64 / max_iters as f64;
                     let color = hsv_to_256(norm * 360.0, 0.9, 1.0);
                     if prev_color != Some(color) {
-                        write!(out, "\x1b[38;5;{}m", color)?;
+                        write!(out, "\x1b[38;5;{color}m")?;
                         prev_color = Some(color);
                     }
                     let ch = shade(norm);
