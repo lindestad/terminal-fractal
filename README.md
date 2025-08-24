@@ -42,11 +42,7 @@ Requires a terminal with 256-color (most modern terminals). If colors look flat,
 
 ## Demo
 
-<video sr
-
 https://github.com/user-attachments/assets/449aa87d-98fd-4176-8088-3bcbb0bb5524
-
-c="assets/demo.mp4" autoplay loop muted playsinline width="640"></video>
 
 ## License
 
